@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "node ./ethereum/compile.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@truffle/hdwallet-provider": "^1.4.1",
+    "fs-extra": "^10.0.0",
     "ganache-cli": "^6.12.2",
-    "mocha": "^8.3.2",
+    "mocha": "^9.0.2",
     "solc": "^0.8.6",
     "web3": "^1.4.0"
   }
