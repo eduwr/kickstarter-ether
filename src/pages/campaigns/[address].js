@@ -4,9 +4,7 @@ import Campaign from "../../../ethereum/campaign";
 import web3 from "../../../ethereum/web3";
 import { ContributeForm } from "../../components/ContributeForm";
 
-const Show = ({ summary }) => {
-  const router = useRouter();
-
+const Show = ({ summary, address }) => {
   const renderCards = () => {
     const {
       minimumContribution,
@@ -61,7 +59,7 @@ const Show = ({ summary }) => {
       <Grid>
         <Grid.Column width={10}>{renderCards()}</Grid.Column>
         <Grid.Column width={6}>
-          <ContributeForm />
+          <ContributeForm address={address} />
         </Grid.Column>
       </Grid>
     </>
@@ -84,6 +82,7 @@ export async function getServerSideProps({ params }) {
         approversCount: summary[3],
         manager: summary[4],
       },
+      address: params.address,
     },
   };
 }
