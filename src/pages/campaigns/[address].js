@@ -69,7 +69,6 @@ const Show = ({ summary, address }) => {
 export default Show;
 
 export async function getServerSideProps({ params }) {
-  console.log(params);
   const campaign = Campaign(params.address);
   const summary = await campaign.methods.getSummary().call();
 
