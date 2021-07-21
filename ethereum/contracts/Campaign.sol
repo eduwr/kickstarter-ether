@@ -28,7 +28,7 @@ contract Campaign {
     uint public minimumContribution;
     mapping(address => bool) public approvers;
     mapping(uint => Request) public requests;
-    uint private currentIndex = 0;
+    uint public requestsCount = 0;
     uint private approversCount = 0;
 
 
@@ -50,13 +50,13 @@ contract Campaign {
     }
 
     function createRequest(string memory description, uint value, address payable recipient) public restricted {
-        Request storage newRequestInStorage = requests[currentIndex];
+        Request storage newRequestInStorage = requests[requestsCount];
         newRequestInStorage.description = description;
         newRequestInStorage.value = value;
         newRequestInStorage.recipient = recipient;
         newRequestInStorage.complete = false;
         newRequestInStorage.approvalCount = 0;
-        currentIndex++;
+        requestsCount++;
 
     }
 
@@ -79,5 +79,17 @@ contract Campaign {
 
         request.recipient.transfer(request.value);
         request.complete = true;
+    }
+
+    function getSummary() public view returns (
+        uint, uint, uint, uint, address
+    ) {
+        return (
+            minimumContribution,
+            address(this).balance,
+            requestsCount,
+            approversCount,
+            manager
+        );
     }
 }
