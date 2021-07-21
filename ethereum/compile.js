@@ -39,6 +39,3 @@ for (let contract in output) {
     output[contract]
   );
 }
-
-// console.log(wowLookAtThat.contracts["Campaign.sol"]["Campaign"]);
-// module.exports = wowLookAtThat.contracts["Campaign.sol"]["Campaign"];

@@ -1,2 +1,11 @@
+# project dependencies
 node_modules
+
+# next.js build
 .next
+
+# The deployed contract address
+deployedContract.json
+
+# next config file
+next.config.js

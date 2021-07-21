@@ -5,8 +5,9 @@ const { abi, evm } = require("./build/CampaignFactory.json");
 const fs = require("fs-extra");
 const path = require("path");
 
-const MNEMONIC_PHRASE = "parenthesis is the theresis...";
-const INFURA_URL = "https://rinkeby.infura.io/v3/fasdfasdfasdfs4";
+// TODO: Fix this envs
+const MNEMONIC_PHRASE = process.env.mnemonicPhrase;
+const INFURA_URL = process.env.infuraURL;
 
 const provider = new HDWalletProvider(
   // remember to change this to your own phrase & endpoint!

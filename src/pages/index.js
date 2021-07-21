@@ -1,5 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import factory from "../../ethereum/factory";
 
-export default function Index() {
-  return <div>index</div>;
-}
+const CampaignIndex = () => {
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      const campaigns = await factory.methods.getCampaigns().call();
+      console.log(campaigns);
+    };
+
+    fetchCampaigns();
+  }, []);
+
+  return <div>sdfalasdjf</div>;
+};
+
+export default CampaignIndex;
