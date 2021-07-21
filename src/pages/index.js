@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import factory from "../../ethereum/factory";
 
-const CampaignIndex = () => {
-  useEffect(() => {
-    const fetchCampaigns = async () => {
-      const campaigns = await factory.methods.getCampaigns().call();
-      console.log(campaigns);
-    };
-
-    fetchCampaigns();
-  }, []);
-
-  return <div>sdfalasdjf</div>;
+const CampaignIndex = ({ campaigns }) => {
+  return <div>{campaigns[0]}</div>;
 };
 
 export default CampaignIndex;
+
+export async function getServerSideProps(context) {
+  const campaigns = await factory.methods.getCampaigns().call();
+
+  return {
+    props: {
+      campaigns,
+    },
+  };
+}
