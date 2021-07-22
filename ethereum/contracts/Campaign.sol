@@ -29,7 +29,7 @@ contract Campaign {
     mapping(address => bool) public approvers;
     mapping(uint => Request) public requests;
     uint public requestsCount = 0;
-    uint private approversCount = 0;
+    uint public approversCount = 0;
 
 
     modifier restricted() {
