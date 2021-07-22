@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Button, Table } from "semantic-ui-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+
 import Campaign from "../../../../../ethereum/campaign";
 import { RequestRow } from "../../../../components/RequestRow";
 
 const { Header, Row, HeaderCell, Body } = Table;
 
-const Requests = ({ requests, address }) => {
-  const renderRows = () => {
-    return requests.map((request, idx) => {
-      return <RequestRow request={request} key={idx} address={address} />;
+const Requests = ({ requests, address, approversCount }) => {
+  const renderRows = () =>
+    requests.map((request, idx) => {
+      return (
+        <RequestRow
+          request={request}
+          key={idx}
+          id={idx}
+          address={address}
+          approversCount={approversCount}
+        />
+      );
     });
-  };
 
   return (
     <>
@@ -45,7 +52,10 @@ export async function getServerSideProps({ params }) {
 
   const campaign = Campaign(address);
 
+  const approversCount = await campaign.methods.approversCount().call();
   const requestsCount = await campaign.methods.requestsCount().call();
+
+  console.log(approversCount);
 
   const requests = await Promise.all(
     Array(parseInt(requestsCount))
@@ -65,6 +75,7 @@ export async function getServerSideProps({ params }) {
     props: {
       address: params.address,
       requests: sanitizedRequests || [],
+      approversCount,
     },
   };
 }
