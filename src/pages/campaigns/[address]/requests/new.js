@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Message } from "semantic-ui-react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import web3 from "../../../../../ethereum/web3";
 import { useCampaign } from "../../../../hooks/useCampaign";
-import Campaign from "../../../../../ethereum/campaign";
 
 const RequestNew = ({ address }) => {
   const router = useRouter();
