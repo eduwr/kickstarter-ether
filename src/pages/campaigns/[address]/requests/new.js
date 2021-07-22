@@ -42,7 +42,7 @@ const RequestNew = ({ address }) => {
   return (
     <>
       <h3>Create a Request</h3>
-      <Form error={!!errorMessage} onSubmit={onSubmit}>
+      <Form error={!!errorMessage}>
         <Form.Field>
           <label>Description</label>
           <Input
@@ -62,8 +62,12 @@ const RequestNew = ({ address }) => {
           />
         </Form.Field>
         <Message error header="Oops!" content={errorMessage} />
-        <Button loading={loading} primary>
+        <Button onClick={onSubmit} loading={loading} primary>
           Create!
+        </Button>
+
+        <Button floated="right" secondary onClick={(e) => router.back()}>
+          Back!
         </Button>
       </Form>
     </>
@@ -73,8 +77,6 @@ const RequestNew = ({ address }) => {
 export default RequestNew;
 
 export async function getServerSideProps({ params }) {
-  const campaign = Campaign(params.address);
-
   return {
     props: {
       address: params.address,
