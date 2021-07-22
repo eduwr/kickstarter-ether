@@ -6,7 +6,6 @@ module.exports = (phase, { defaultConfig }) => {
     env: {
       infuraURL: "YOUR INFURA URL",
       contractAddress: "YOUR CONTRACT ADDRESS",
-      mnemonicPhrase: "YOUR MNEMONIC PHRASE",
     },
   };
   return nextConfig;
