@@ -7,7 +7,7 @@ import { RequestRow } from "../../../../components/RequestRow";
 
 const { Header, Row, HeaderCell, Body } = Table;
 
-const Requests = ({ requests, address, approversCount }) => {
+const Requests = ({ requests, address, approversCount, requestCount }) => {
   const renderRows = () =>
     requests.map((request, idx) => {
       return (
@@ -25,7 +25,9 @@ const Requests = ({ requests, address, approversCount }) => {
     <>
       <h3>Requests</h3>
       <Link href={`/campaigns/${address}/requests/new`}>
-        <Button primary>New Request</Button>
+        <Button style={{ marginBottom: 10 }} floated="right" primary>
+          New Request
+        </Button>
       </Link>
       <Table>
         <Header>
@@ -41,6 +43,8 @@ const Requests = ({ requests, address, approversCount }) => {
         </Header>
         <Body>{renderRows()}</Body>
       </Table>
+
+      <div>Found {requestCount} requests</div>
     </>
   );
 };
@@ -54,8 +58,6 @@ export async function getServerSideProps({ params }) {
 
   const approversCount = await campaign.methods.approversCount().call();
   const requestsCount = await campaign.methods.requestsCount().call();
-
-  console.log(approversCount);
 
   const requests = await Promise.all(
     Array(parseInt(requestsCount))
@@ -76,6 +78,7 @@ export async function getServerSideProps({ params }) {
       address: params.address,
       requests: sanitizedRequests || [],
       approversCount,
+      requestCount: sanitizedRequests.length || 0,
     },
   };
 }

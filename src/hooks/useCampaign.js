@@ -9,5 +9,15 @@ export const useCampaign = (address) => {
 
   return {
     createRequest: methods.createRequest,
+    approveRequest: methods.approveRequest,
+    contribute: methods.contribute,
+    finalizeRequest: methods.finalizeRequest,
+    getSummary: methods.getSummary,
+    approversCount: methods.approversCount,
+    requestsCount: methods.requestsCount,
+    requests: methods.requests,
+    approvers: methods.approvers,
+    minimumContribution: methods.minimumContribution,
+    manager: methods.manager,
   };
 };
