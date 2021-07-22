@@ -56,15 +56,19 @@ const Show = ({ summary, address }) => {
     <>
       <h3>Campaign Show</h3>
       <Grid>
-        <Grid.Column width={10}>
-          {renderCards()}
-          <Link href={`/campaigns/${address}/requests`}>
-            <Button primary>View Requests</Button>
-          </Link>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <ContributeForm address={address} />
-        </Grid.Column>
+        <Grid.Row>
+          <Grid.Column width={10}>{renderCards()}</Grid.Column>
+          <Grid.Column width={6}>
+            <ContributeForm address={address} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Link href={`/campaigns/${address}/requests`}>
+              <Button primary>View Requests</Button>
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </>
   );
